@@ -1,5 +1,8 @@
 name="prudhvi";
-print(name);
+print;
 name2="sandeep"
 print(name2);
+
+
+print("demo");
 

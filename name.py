@@ -5,4 +5,4 @@ print(name2);
 
 
 print("demo");
-
+print("user was added);

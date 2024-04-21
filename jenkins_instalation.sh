@@ -1,4 +1,4 @@
-:
+
 #!/bin/bash
 
 # Update the system
@@ -26,5 +26,5 @@ sudo systemctl start jenkins
 sudo systemctl enable jenkins
 
 # Output the initial admin password
-#echo "Jenkins installation completed. The initial admin password is:"
+#echo "Jenkins installation completed. The initial admin password is:i
 #sudo cat /var/lib/jenkins/secrets/initialAdminPassword

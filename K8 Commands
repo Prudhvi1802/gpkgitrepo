@@ -1,0 +1,4 @@
+#To get nodes for default namespace                           kubectl get nodes -n default
+#To get nodes for abc namespace                               kubectl get nodes -n abc
+#To get nodes more info                                       kubectl get nodes -o wide
+#To get pods                                                  kubectl get po

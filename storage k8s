@@ -1,0 +1,47 @@
+#Attach storage from azure file share
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: azurefilestorage #sc name
+provisioner: file.csi.azure.com
+parameters:
+  skuName: Standard_LRS    #Standrad_LRS,Premium_LRS we need to check from documentation;
+  shareName: myshare         # azure filestorage name
+reclaimPolicy: Delete #Delete, Recycle, Retain
+-----------------------------------------------------------
+#PVC for StorageClass(Sc)
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: azurefile-pvc
+spec:
+  accessModes:
+    - ReadWriteMany  # Azure Files supports ReadWriteMany, so it allows multiple pods to access the volume.
+                     #ReadWriteOnce
+                     #ReadWriteMany
+  resources:
+    requests:
+      storage: 5Gi  # Adjust size according to your needs.
+  storageClassName: azurefilestorage  # Referencing the 'azurefile' StorageClass you defined earlier.
+  -------------------------------------------------------
+  #Attaching PVC to POD
+  apiVersion: v1
+kind: Pod
+metadata:
+  name: azurefile-pod
+spec:
+  containers:
+    - name: nginx
+      image: nginx:latest
+      volumeMounts:
+        - name: azurefile-volume
+          mountPath: /usr/share/nginx/html  # Path inside the container where the volume will be mounted
+  volumes:
+    - name: azurefile-volume
+      persistentVolumeClaim:
+        claimName: azurefile-pvc  # PVC created using the azurefile StorageClass
+      
+        
+        
+        
+        

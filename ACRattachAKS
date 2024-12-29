@@ -1,0 +1,14 @@
+AKS
+name:myaks-cluster
+group:aks-rg
+ACR
+name:prudhviklipkart
+group:acr-rg
+# Attach using acr-name
+az aks update --name myaks-cluster --resource-group aks-rg --attach-acr prudhviklipkart
+
+# Attach using acr-resource-id
+az aks update --name myaks-cluster --resource-group aks-rg --attach-acr /subscriptions/fb1b3cbe-80c2-4685-a26a-e871b59b5ae0/resourcegroups/acr-rg/providers/Microsoft.ContainerRegistry/registries/prudhviklipkart
+
+#to show acr id 
+az acr show --name prudhviklipkart  --query id --output tsv
